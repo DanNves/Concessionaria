@@ -5,5 +5,4 @@ public enum TipoCombustivel {
         FLEX,
         ELETRICO,
         HIBRIDO
-
 }

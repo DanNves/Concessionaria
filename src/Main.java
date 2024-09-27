@@ -1,47 +1,47 @@
-import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
+        //Criando concessionaria
+        Concessionaria concessionaria = new Concessionaria("CarrosDan","Avenida do Chamego",
+                "(71) 9 3251 - 6950","carrosdan@gmail.com","69.726.801/0001-35");
+        System.out.println(concessionaria.toString());
+        System.out.println();
 
-        // Criação da concessionária
-        Concessionaria concessionaria = new Concessionaria("CarrosDan", "Rua ABC, 777",
-                "123456789", "carrosdan@gmai.com", "00.000.000/0001-00");
-        System.out.println(concessionaria);
+        //Criando alguns carros
+        Veiculo carro1 = new Veiculo("Volkswagen", "Gol", 2023,
+                "Prata", 50000.0, true, TipoCombustivel.GASOLINA, "ABC1234", 0, true);
+        Veiculo carro2 = new Veiculo("Toyota", "Corolla", 2022,
+                "Preto", 80000.0, true, TipoCombustivel.FLEX, "DEF5678", 10000, false);
+        Veiculo moto1 = new Veiculo("Honda", "CG 160", 2021,
+                "Vermelho", 12000.0, true, TipoCombustivel.GASOLINA, "GHI7890", 5000, false);
 
-        // Criação da fábrica de veículos
-        Veiculo carro1 = new Veiculo("Corolla", "Toyota", 2023, 120000, "Preto", 0, 177, TipoCombustivel.GASOLINA);
-        Veiculo carro2 = new Veiculo("Civic", "Honda", 2022, 130000, "Branco", 5000, 155, TipoCombustivel.GASOLINA);
-        Veiculo carro3 = new Veiculo("Model 3", "Tesla", 2023, 350000, "Vermelho", 0, 450, TipoCombustivel.ELETRICO);
-        Veiculo carro4 = new Veiculo("Hilux", "Toyota", 2021, 200000, "Cinza", 20000, 204, TipoCombustivel.DIESEL);
 
-        System.out.println(carro1);
-        System.out.println(carro2);
-        System.out.println(carro3);
-        System.out.println(carro4);
-
-        // Adicionando veículos ao estoque da concessionária
         concessionaria.adicionarVeiculo(carro1);
         concessionaria.adicionarVeiculo(carro2);
-        concessionaria.adicionarVeiculo(carro3);
-        concessionaria.adicionarVeiculo(carro4);
+        concessionaria.adicionarVeiculo(moto1);
+        //concessionaria.removerVeiculo(moto1);
 
-        //Atualização da concessionaria com os novos carros
-        System.out.println(concessionaria);
+        Cliente c1 = new Cliente("João","joaozinho@gmail.com","001.585.988-30",
+                "Rua dos Passáros","(71) 9 99999-8888","Nenhuma");
+        c1.adicionarVeiculo(moto1);
+        c1.adicionarVeiculo(carro1);
+        c1.getVeiculosComprados();
 
-        // Criação de um cliente
-        Cliente cliente = new Cliente("João", "123.456.789-00");
+        //Listando os veiculos da concessionaria
+        List<Veiculo> estoque = concessionaria.listarVeiculos();
+        for(Veiculo veiculo : estoque){
+            System.out.println(veiculo);
+        }
+        System.out.println();
+        System.out.println(concessionaria.toString());
 
-        // Simulação de venda de um veículo
-        concessionaria.venderVeiculo(cliente, carro1); // Cliente João compra o Corolla
-        cliente.comprarVeiculo(carro1);
+        System.out.println(c1.toString() +" \n "+ c1.getVeiculosComprados());
 
-        // Exibe o carro comprado pelo cliente
-        System.out.println("Carro comprado por " + cliente.getNome() + "\n\n" + cliente.getVeiculoComprado());
-
-        //Atualização da concessionaria depois de vender um veiculo
-        System.out.println(concessionaria);
+        System.out.println();
+        concessionaria.removerVeiculo(carro1);
+        concessionaria.removerVeiculo(moto1);
+        System.out.println(concessionaria.toString());
     }
+
 }
-
-

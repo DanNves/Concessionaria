@@ -1,50 +1,39 @@
 import java.util.ArrayList;
 import java.util.List;
-
 public class Concessionaria {
+    //Atributos
     private String nome;
-    private String endereco;
+    private String endereço;
     private String telefone;
     private String email;
     private String cnpj;
-    private List<Veiculo> estoqueVeiculos = new ArrayList<>();
+    private List<Veiculo> estoqueVeiculos = new ArrayList<Veiculo>();
 
-    public Concessionaria(String nome, String endereco, String telefone, String email, String cnpj) {
+    //Construtor
+    public Concessionaria(String nome, String endereço, String telefone, String email, String cnpj) {
         this.nome = nome;
-        this.endereco = endereco;
+        this.endereço = endereço;
         this.telefone = telefone;
         this.email = email;
         this.cnpj = cnpj;
     }
 
-    // Método para adicionar veículo ao estoque
+    //Metodo adicionar veiculo ao estoque
     public void adicionarVeiculo(Veiculo veiculo) {
-        estoqueVeiculos.add(veiculo);
+        this.estoqueVeiculos.add(veiculo);
     }
 
-    // Método para remover veículo do estoque
-    public void removerVeiculo(Veiculo veiculo) {
-        estoqueVeiculos.remove(veiculo);
+    //Metodo remover veiculo do estoque
+    public void removerVeiculo(Veiculo veiculo){
+        this.estoqueVeiculos.remove(veiculo);
     }
 
-    // Método para vender veículo ao cliente
-    public void venderVeiculo(Cliente cliente, Veiculo veiculo) {
-        if (estoqueVeiculos.contains(veiculo)) {
-            cliente.comprarVeiculo(veiculo); // Registra a compra do veículo no cliente
-            removerVeiculo(veiculo); // Remove o veículo do estoque
-            System.out.println("Veículo vendido a " + cliente.getNome());
-        } else {
-            System.out.println("Veículo não disponível no estoque.");
-        }
-    }
-
-    // Listar veículos disponíveis no estoque
+    //Listar veiculos
     public List<Veiculo> listarVeiculos() {
         return new ArrayList<>(estoqueVeiculos);
     }
 
-    // Getters e Setters...
-
+    //Getter and Setter
     public String getNome() {
         return nome;
     }
@@ -53,12 +42,12 @@ public class Concessionaria {
         this.nome = nome;
     }
 
-    public String getEndereco() {
-        return endereco;
+    public String getEndereço() {
+        return endereço;
     }
 
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
+    public void setEndereço(String endereço) {
+        this.endereço = endereço;
     }
 
     public String getTelefone() {
@@ -85,16 +74,15 @@ public class Concessionaria {
         this.cnpj = cnpj;
     }
 
-    @Override
-    public String toString() {
-        return "Concessionaria\n"+
-                "Nome: " + nome +
-                "\nEndereço: " + endereco +
-                "\nTelefone: " + telefone +
-                "\nEmail: " + email +
-                "\nCNPJ: " + cnpj +
-                "\nVeículos no estoque: " + estoqueVeiculos.size() + "\n";
+    public List<Veiculo> getEstoqueVeiculos() {
+        return new ArrayList<>(estoqueVeiculos);
     }
 
-
+    @Override
+    public String toString() {
+        return "Concessionaria\n" +
+                "Nome: "+ this.getNome()+ "\nEndereço: "+ this.getEndereço() +
+                "\nTelefone: "+ this.getTelefone()+ "\nEmail: "+ this.getEmail() +
+                "\nCNPJ: "+ this.getCnpj()+ "\nVeiculos Disponiveis: "+ estoqueVeiculos.size();
+    }
 }
